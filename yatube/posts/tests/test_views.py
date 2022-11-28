@@ -306,21 +306,15 @@ class TestFollowViews(TestCase):
 
     def test_follow_on_authors(self):
         """Проверка записей у тех кто подписан."""
-        post = Post.objects.create(
-            author=self.post_author,
-            text='Тестовый пост')
         Follow.objects.create(
             user=self.post_follower,
             author=self.post_author)
         response = self.follower_client.get(
             reverse('posts:follow_index'))
-        self.assertIn(post, response.context['page_obj'].object_list)
+        self.assertIn(self.post, response.context['page_obj'].object_list)
 
     def test_notfollow_on_authors(self):
         """Проверка записей у тех кто не подписан."""
-        post = Post.objects.create(
-            author=self.post_author,
-            text='Тестовый пост')
         response = self.author_client.get(
             reverse('posts:follow_index'))
-        self.assertNotIn(post, response.context['page_obj'].object_list)
+        self.assertNotIn(self.post, response.context['page_obj'].object_list)

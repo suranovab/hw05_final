@@ -1,4 +1,5 @@
 from django.db import models
+# from django.db.models import UniqueConstraint
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -63,9 +64,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(
         Post,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name='comments'
     )
     author = models.ForeignKey(
@@ -83,7 +82,7 @@ class Comment(models.Model):
     )
 
     class Meta:
-        ordering = ["-created"]
+        ordering = ('-created',)
 
     def __str__(self):
         return self.text
@@ -100,3 +99,10 @@ class Follow(models.Model):
         on_delete=models.CASCADE,
         related_name="following"
     )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'author'], name='unique_follow'
+            )
+        ]
