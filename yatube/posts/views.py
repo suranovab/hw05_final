@@ -50,10 +50,8 @@ def profile(request, username):
 def post_detail(request, post_id):
     """Вывод на страницу подробной информации о посте"""
     template = 'posts/post_detail.html'
-    # form = CommentForm(request.POST or None)
     form = CommentForm()
     post = get_object_or_404(Post, pk=post_id)
-    # comments = Comment.objects.filter(post=post)
     comments = post.comments.all()
     context = {
         'post': post,
