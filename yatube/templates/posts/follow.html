@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
+{% load cache %}
 {% block title %}
   Подписки
 {% endblock %}
 {% block content %}
 {% include 'posts/includes/switcher.html' %}
-{% load cache %}
 {% cache 20 follow_page %}
 <div class="container py-5">
 {% for post in page_obj %}

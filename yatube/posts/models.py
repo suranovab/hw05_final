@@ -1,5 +1,4 @@
 from django.db import models
-# from django.db.models import UniqueConstraint
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -52,16 +51,18 @@ class Post(models.Model):
     )
 
     class Meta:
+        """Сортировка по дате."""
         verbose_name = 'запись'
         verbose_name_plural = 'записи'
         ordering = ('-pub_date',)
 
     def __str__(self):
-        """Вывод на печать 15 символов поста"""
+        """Вывод на печать 15 символов поста."""
         return self.text[:CHAR_IN_POST]
 
 
 class Comment(models.Model):
+    """Модель для работы с комментариями."""
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
@@ -82,6 +83,7 @@ class Comment(models.Model):
     )
 
     class Meta:
+        """Сортировка по дате."""
         ordering = ('-created',)
 
     def __str__(self):
@@ -89,6 +91,7 @@ class Comment(models.Model):
 
 
 class Follow(models.Model):
+    """Модель для работы с подписками."""
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -101,6 +104,7 @@ class Follow(models.Model):
     )
 
     class Meta:
+        """Проверка уникальности имен при подписке."""
         constraints = [
             models.UniqueConstraint(
                 fields=['user', 'author'], name='unique_follow'
