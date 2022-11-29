@@ -25,7 +25,6 @@ urlpatterns = [
         LoginView.as_view(template_name='users/login.html'),
         name='login'
     ),
-    # Смена пароля
     path(
         'password_change/',
         PasswordChangeView.as_view(
@@ -33,7 +32,6 @@ urlpatterns = [
         ),
         name='password_change_form'
     ),
-    # Сообщение об успешном изменении пароля
     path(
         'password_change/done/',
         PasswordChangeDoneView.as_view(
@@ -41,7 +39,6 @@ urlpatterns = [
         ),
         name='password_change_done'
     ),
-    # Восстановление пароля
     path(
         'password_reset/',
         PasswordResetView.as_view(
@@ -49,7 +46,6 @@ urlpatterns = [
         ),
         name='password_reset_form'
     ),
-    # Сообщение об отправке ссылки для восстановления пароля
     path(
         'password_reset/done/',
         PasswordResetDoneView.as_view(
@@ -57,7 +53,6 @@ urlpatterns = [
         ),
         name='password_reset_done'
     ),
-    # Вход по ссылке для восстановления пароля
     path(
         'reset/<uidb64>/<token>/',
         PasswordResetConfirmView.as_view(
@@ -65,7 +60,6 @@ urlpatterns = [
         ),
         name='password_reset_confirm'
     ),
-    # Сообщение об успешном восстановлении пароля
     path(
         'reset/done/',
         PasswordResetCompleteView.as_view(
