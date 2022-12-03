@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
 {% include 'posts/includes/switcher.html' %}
-{% cache 20 follow_page %}
+{% cache 20 page_obj.number request %}
 <div class="container py-5">
 {% for post in page_obj %}
   {% include 'posts/includes/posts_card.html' %}

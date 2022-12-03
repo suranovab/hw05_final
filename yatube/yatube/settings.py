@@ -30,8 +30,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '[::1]',
     'testserver',
-    'www.suranovab.pythonanywhere.com',
-    'suranovab.pythonanywhere.com',
+    'www.suranov.pythonanywhere.com',
+    'suranov.pythonanywhere.com',
 ]
 
 
