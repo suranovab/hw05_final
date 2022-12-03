@@ -20,7 +20,11 @@
     <div class="media-body">
       <h5 class="mt-0">
         <a href="{% url 'posts:profile' comment.author.username %}">
-          {{ comment.author.username }}
+          {% if comment.author.get_full_name %}
+            {{ comment.author.get_full_name }}
+          {% else %}
+            {{ comment.author.username }}
+          {% endif %}
         </a>
       </h5>
       <p>
